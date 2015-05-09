@@ -32,38 +32,45 @@ def best_vacation_spot(weather_type):
     # wind = Hawaii
     # rain = New York
     # sun = Mexico
-
-    return "Stay at home"
+    spots_for_weather = {
+        'snow': 'Tahoe',
+        'wind': 'Hawaii',
+        'rain': 'New York',
+        'sun': 'Mexico'
+    }
+    return spots_for_weather[weather_type]
 
 
 def vacation_activity(weather_type):
     # Look up the vacation activity from activities
     # and return just the activity itself
-    print activity
+    return activities[weather_type]
 
 
 def get_my_vacation():
 
-    season = raw_input("What season do you want to travel? ")
+    season = raw_input("What season do you want to travel? ").lower()
 
     # check if season is in the seasons list
-    if not seasons:
+    if not season in seasons:
         print "Sorry, that isn't a season. I can't help you."
+        exit()
 
     # look up the weather type for that season
-    weather = weather_patterns[season]
+    weather_type = weather_patterns[season]
 
     # get the best vacation spot for that type
-    best_vacation_spot(weather_type)
+    spot = best_vacation_spot(weather_type)
 
     # get the best vacation activity for that type
-    vacation_activity(weather_type)
+    activity = vacation_activity(weather_type)
 
-    print "You should travel to {}, where you can spend your time {}!".format(vacation_spot, vacation_activity)
+    print "You should travel to {}, where you can spend your time {}!".format(spot, activity)
 
 
 def main():
     print "Welcome to the Vacation-o-Matic!"
+    get_my_vacation()
 
 
 if __name__=="__main__":
